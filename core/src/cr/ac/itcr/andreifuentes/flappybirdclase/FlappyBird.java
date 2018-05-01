@@ -47,16 +47,10 @@ public class FlappyBird extends ApplicationAdapter {
 	Rectangle[] topPipes;
 	Rectangle[] bottomPipes;
 
-	Stage stage;
-	Skin skin;
+	String easy = "Easy";
+	String hard = "Hard";
 
-	TextButton easy;
-	TextButton medium;
-	TextButton hard;
-	TextButton impossible;
 
-	int pos;
-	int btnSize;
 
 
 	@Override
@@ -92,29 +86,6 @@ public class FlappyBird extends ApplicationAdapter {
 		font.setColor(Color.WHITE);
 		font.getData().setScale(10);
 
-		pos = 200;
-		btnSize =100;
-
-		stage = new Stage();
-		skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-
-		easy = new TextButton("Easy", skin);
-		medium = new TextButton("Medium", skin);
-		hard = new TextButton("Hard", skin);
-		impossible = new TextButton("Impossible", skin);
-		easy.setSize(btnSize,btnSize);
-		medium.setSize(btnSize,btnSize);
-		hard.setSize(btnSize,btnSize);
-		impossible.setSize(btnSize,btnSize);
-		easy.setPosition(pos,50);
-		medium.setPosition(pos+200,50);
-		hard.setPosition(pos+400,50);
-		impossible.setPosition(pos+600,50);
-		stage.addActor(easy);
-		stage.addActor(medium);
-		stage.addActor(hard);
-		stage.addActor(impossible);
-
 		startGame();
 	}
 
@@ -138,10 +109,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 		// no iniciado
 		if (game_state == 0){
-            stage.draw();
-			if (Gdx.input.justTouched()){
-				game_state = 1;
-			}
+			dificultad();
 		}
 		// jugando
 		else if (game_state == 1){
@@ -236,13 +204,7 @@ public class FlappyBird extends ApplicationAdapter {
 		// game over
 		else if (game_state == 2){
 			batch.draw(gameOver, Gdx.graphics.getWidth()/2 - gameOver.getWidth()/2, Gdx.graphics.getHeight()/2 - gameOver.getHeight()/2);
-			if (Gdx.input.justTouched()){
-				game_state = 1;
-				score = 0;
-				pipeActivo = 0;
-				velocity = 0;
-				startGame();
-			}
+			dificultad();
 		}
 
 		batch.draw(birds[birdState], Gdx.graphics.getWidth() / 2 - birds[birdState].getWidth()/2,  birdY,  birds[birdState].getWidth(), birds[birdState].getHeight());
@@ -255,5 +217,31 @@ public class FlappyBird extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		background.dispose();
+	}
+
+	public void dificultad(){
+		font.draw(batch, easy, Gdx.graphics.getWidth()*1/14, Gdx.graphics.getHeight()*9/14);
+		font.draw(batch, hard, Gdx.graphics.getWidth()*3/5, Gdx.graphics.getHeight()*9/14);
+		if (Gdx.input.justTouched()){
+			if(Gdx.input.getX() > Gdx.graphics.getWidth()/2){
+				gap = 400;
+				distance = Gdx.graphics.getWidth()*2/5;
+			}
+			else{
+				gap = 500;
+				distance = Gdx.graphics.getWidth()*3/5;
+			}
+			if(game_state == 0) {
+				game_state = 1;
+				startGame();
+			}
+			else if(game_state == 2){
+				game_state = 1;
+				score = 0;
+				pipeActivo = 0;
+				velocity = 0;
+				startGame();
+			}
+		}
 	}
 }
