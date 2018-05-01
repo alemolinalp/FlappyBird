@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue May 01 11:53:45 CST 2018
+#Tue May 01 15:11:03 CST 2018
 17.baseType=DIRECTORY
 4.path=lib/armeabi/libgdx-box2d.so
 22.set=DEX

@@ -1,8 +1,8 @@
 #Internal package file, do not edit.
-#Tue May 01 11:53:43 CST 2018
-4.path=hit.mp3
+#Tue May 01 15:11:01 CST 2018
+4.path=jump.mp3
 8.set=ASSET
-6.path=bird2.png
+6.path=bottomtube.png
 0.baseType=DIRECTORY
 5.baseType=DIRECTORY
 1.base=/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/intermediates/assets/debug
@@ -17,12 +17,12 @@
 7.set=ASSET
 3.set=ASSET
 2.baseType=DIRECTORY
-1.path=bg.png
+1.path=gameOverOriginal.png
 7.baseType=DIRECTORY
-3.path=toptube.png
-5.path=jump.mp3
+3.path=hit.mp3
+5.path=bird2.png
 0.base=/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/intermediates/assets/debug
-7.path=bottomtube.png
+7.path=bird.png
 6.set=ASSET
 2.base=/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/intermediates/assets/debug
 4.base=/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/intermediates/assets/debug
@@ -34,6 +34,6 @@
 count=9
 4.baseType=DIRECTORY
 5.set=ASSET
-0.path=bird.png
+0.path=bg.png
 1.set=ASSET
-2.path=gameOverOriginal.png
+2.path=toptube.png

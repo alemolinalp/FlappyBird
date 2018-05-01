@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
@@ -55,6 +56,10 @@ public class FlappyBird extends ApplicationAdapter {
 	Sound hit;
 	Sound onlyjump;
 
+
+	Sprite sprite;
+	int i;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -92,6 +97,9 @@ public class FlappyBird extends ApplicationAdapter {
 		hit =  Gdx.audio.newSound(Gdx.files.internal("hit.mp3"));
 		onlyjump = Gdx.audio.newSound(Gdx.files.internal("onlyjump.mp3"));
 
+		sprite = new Sprite(birds[birdState]);
+		i = 0;
+
 		startGame();
 	}
 
@@ -109,6 +117,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+
+		sprite.setRotation(i--);
 
 		batch.begin();
 		batch.draw(background, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -192,13 +202,12 @@ public class FlappyBird extends ApplicationAdapter {
 			if (Gdx.input.justTouched()){
 				velocity = velocity - 30;
 				onlyjump.play(1.0f);
+				i=0;
 			}
 
 			birdState = birdState == 0 ? 1 : 0;
 
-
 			velocity = velocity + gravity;
-
 
 			if (birdY < 0){
 				game_state = 2;
@@ -216,8 +225,12 @@ public class FlappyBird extends ApplicationAdapter {
 			batch.draw(gameOver, Gdx.graphics.getWidth()/2 - gameOver.getWidth()/2, Gdx.graphics.getHeight()/2 - gameOver.getHeight()/2);
 			dificultad();
 		}
+		//batch.draw(birds[birdState], Gdx.graphics.getWidth() / 2 - birds[birdState].getWidth() / 2, birdY, birds[birdState].getWidth(), birds[birdState].getHeight());
+		sprite.setPosition(Gdx.graphics.getWidth() / 2 - birds[birdState].getWidth() / 2, birdY);
+		sprite.setSize(birds[birdState].getWidth(), birds[birdState].getHeight());
+		sprite.draw(batch);
 
-		batch.draw(birds[birdState], Gdx.graphics.getWidth() / 2 - birds[birdState].getWidth()/2,  birdY,  birds[birdState].getWidth(), birds[birdState].getHeight());
+
 		font.draw(batch, Integer.toString(score), Gdx.graphics.getWidth()*1/8, Gdx.graphics.getHeight()*9/10);
 		batch.end();
 
