@@ -2,6 +2,7 @@ package cr.ac.itcr.andreifuentes.flappybirdclase;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -50,8 +51,9 @@ public class FlappyBird extends ApplicationAdapter {
 	String easy = "Easy";
 	String hard = "Hard";
 
-
-
+	Sound jump;
+	Sound hit;
+	Sound onlyjump;
 
 	@Override
 	public void create () {
@@ -86,6 +88,10 @@ public class FlappyBird extends ApplicationAdapter {
 		font.setColor(Color.WHITE);
 		font.getData().setScale(10);
 
+		jump = Gdx.audio.newSound(Gdx.files.internal("jump.mp3"));
+		hit =  Gdx.audio.newSound(Gdx.files.internal("hit.mp3"));
+		onlyjump = Gdx.audio.newSound(Gdx.files.internal("onlyjump.mp3"));
+
 		startGame();
 	}
 
@@ -114,6 +120,7 @@ public class FlappyBird extends ApplicationAdapter {
 		// jugando
 		else if (game_state == 1){
 			if (pipeX[pipeActivo] < Gdx.graphics.getWidth()/2 - topTube.getWidth()){
+				jump.play(1.0f);
 				score++;
 
 				if (pipeActivo < numberOfPipes - 1){
@@ -172,16 +179,19 @@ public class FlappyBird extends ApplicationAdapter {
 
 				if (Intersector.overlaps(birdCircle, topPipes[i])){
 					Gdx.app.log("Intersector", "top pipe overlap");
+					hit.play(1.0f);
 					game_state = 2;
 				}
 				else if (Intersector.overlaps(birdCircle, bottomPipes[i])){
 					Gdx.app.log("Intersector", "bottom pipe overlap");
+					hit.play(1.0f);
 					game_state = 2;
 				}
 			}
 
 			if (Gdx.input.justTouched()){
 				velocity = velocity - 30;
+				onlyjump.play(1.0f);
 			}
 
 			birdState = birdState == 0 ? 1 : 0;

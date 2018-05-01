@@ -5,28 +5,31 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
+    ir-eligibility="FIELD_ADDED"
     plugin-version="3.0.1"
-    timestamp="1525195499593"
+    timestamp="1525197222823"
     token="3930045859768379425"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="140" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="33" />
+        duration="25" />
     <task
         name="verifier"
-        duration="3" />
+        duration="4" />
 
     <artifact
         location="/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/intermediates/split-apk/debug/slices/slice_4.apk"
         type="SPLIT" />
+    <artifact
+        location="/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/outputs/apk/debug/android-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
@@ -71,12 +74,15 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1525195499593"
+        ir-eligibility="FIELD_ADDED"
+        timestamp="1525197222823"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
+        <artifact
+            location="/Users/alexandramolina/Documents/GitHub/FlappyBird/android/build/outputs/apk/debug/android-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>
